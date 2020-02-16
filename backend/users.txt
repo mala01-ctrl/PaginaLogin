@@ -1,0 +1,4 @@
+{"nome":"Lorenzo","cognome":"Malavolti","sesso":"M","patente":"B","nazionalita":"Italiano","email":"malavoltilorenzo0@gmail.com","password":"$2y$10$e614g\/rsm8YdnL.neIVsZ.XLSjQeBOKzn2sVSyBEpDFeZjB7\/d.we"}
+{"nome":"Mario","cognome":"Rossi","sesso":"M","patente":"B","nazionalita":"Italiano","email":"a@k","password":"$2y$10$KVvGD0qIj7el\/WB39LI9eu3GXI6T9HIYrwCG.VcL6tNFYJBEW.t6e"}
+{"nome":"Luigi","cognome":"Verdi","sesso":"M","patente":"A","nazionalita":"Italiano","email":"mala@gmail.com","password":"$2y$10$tgsPcXlAlThSHWuy9.WPb.fFPnQnLdpfcgiCELS\/.6U81oQiKP6sa"}
+{"nome":"Mario","cognome":"Bianchi","sesso":"M","patente":"B","nazionalita":"Italiano","email":"b@gmail.com","password":"$2y$10$2xZefFNTr\/lHbcFUvDIo6OIBnzYeBO\/HT0Gw13rCszvefaTnw6gTC"}

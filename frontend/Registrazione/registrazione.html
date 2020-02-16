@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrazione</title>
+    <link rel="stylesheet" href="registrazione.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script type="text/javascript" src="registrazione.js"></script>
+</head>
+
+<body onload="populateSelect()">
+    <div id="Box" class="bg-primary text-white">
+        <div id="titolo" class="border-bottom border-dark">
+            <h3>Modulo di iscrizione</h3>
+        </div>
+        <form id="registrazione">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Cognome: </label>
+                <div class="col-sm-7 prova">
+                    <input type="cognome" class="form-control" id="cognome">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nome: </label>
+                <div class="col-sm-7 prova">
+                    <input type="nome" class="form-control" id="nome">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sesso: </label>
+                <div class="form-check form-check-inline check">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Maschile" value="M">
+                    <label class="form-check-label">Maschile</label>
+                </div>
+                <div class="form-check form-check-inline check">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Femminile" value="F">
+                    <label class="form-check-label">Femminile</label>
+                </div>
+            </div>
+            <div class="form-row align-items-center">
+                <label class="col-sm-2 col-form-label">Nazionalita':</label>
+                <div class="col-auto my-1">
+                    <select class="custom-select mr-sm-2 select" id="nazionalita" ></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Patente: </label>
+                <div class="form-check form-check-inline check">
+                    <input class="form-check-input" type="checkbox" id="A" value="A" >
+                    <label class="form-check-label" for="inlineCheckbox1">Cat. A</label>
+                </div>
+                <div class="form-check form-check-inline check">
+                    <input class="form-check-input" type="checkbox" id="B" value="B">
+                    <label class="form-check-label" for="inlineCheckbox2">Cat. B</label>
+                </div>
+            </div>
+            <div class="form-group row prova">
+                <label class="col-sm-2 col-form-label">Email: </label>
+                <div class="col-sm-7 prova">
+                    <input type="email" class="form-control" id="email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Password: </label>
+                <div class="col-sm-7 prova">
+                    <input type="password" class="form-control" id="password">
+                </div>
+            </div>
+        </form>
+        <div class="border-top border-dark">
+            <div id="bottom">
+                <button type="button" class="btn btn-secondary" onclick="annulla()">Annulla</button>
+                <button type="button" class="btn btn-danger" onclick="conferma()">Conferma</button>
+            </div>
+            <div>
+                <p id="errore"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

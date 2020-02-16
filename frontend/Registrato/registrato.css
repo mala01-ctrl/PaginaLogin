@@ -1,0 +1,27 @@
+#box{
+    margin: auto;
+    margin-top: 100px;
+    width: 400px;
+    height: 180px;
+}
+
+#titolo{
+    margin-top: 20px;
+}
+
+#testo{
+    margin-top: 10px;
+}
+
+#esito{
+    text-align: center;
+    font-size: 30px;
+}
+
+#button{
+    text-align: center;
+}
+
+#chiudi{
+    margin-top: 20px;
+}

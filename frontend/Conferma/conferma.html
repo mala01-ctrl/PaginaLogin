@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conferma</title>
+    <link rel="stylesheet" href="../Registrazione/registrazione.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script type="text/javascript" src="conferma.js"></script>
+</head>
+<body onload="getData()">
+    <div id="Box" class="bg-dark text-white">
+        <div id="titolo" class="border-bottom border-secondary">
+            <h3>Riepilogo dati</h3>
+        </div>
+        <form id="registrazione">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Cognome: </label>
+                <div class="col-sm-2 prova">
+                    <label class="col-sm-2 col-form-label" id="cognome"> </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nome: </label>
+                <div class="col-sm-2 prova">
+                    <label class="col-sm-2 col-form-label" id="nome"> </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sesso: </label>
+                <div class="col-sm-2 prova">
+                    <label class="col-sm-2 col-form-label" id="sesso"> </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nazionalita': </label>
+                <div class="col-sm-2 prova">
+                    <label class="col-sm-2 col-form-label" id="nazionalita"> </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Patente: </label>
+                <div class="col-sm-2 prova">
+                    <label class="col-sm-2 col-form-label" id="patente"> </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">email: </label>
+                <div class="col-sm-2 prova">
+                    <label class="col-sm-2 col-form-label" id="email"> </label>
+                </div>
+            </div>
+        </form>
+        <div class="border-top border-secondary">
+            <div id="bottom">
+                <button type="button" class="btn btn-secondary" onclick="getBack()">Correggi</button>
+                <button type="button" class="btn btn-success" onclick="registra()">Registra</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

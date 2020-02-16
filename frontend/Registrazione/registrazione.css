@@ -1,0 +1,32 @@
+#Box{
+    margin: auto;
+    margin-top: 60px;
+    width: 400px;
+    height: 530px;
+}
+
+#titolo{
+    height: 60px;
+}
+
+#registrazione{
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.prova {
+    margin-left: 30px;
+}
+.check{
+    margin-left: 50px;
+}
+
+.select{
+    margin-left: 30px;
+}
+
+#bottom{
+    margin-left: 100px;
+    margin-top: 10px;
+    width: 400px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="login.css" />
+    <script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+    <div id="Box" class="border rounded bg-light text-dark">
+        <h2>Log-in</h2>
+        <form id="login">
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="title">Email address</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" >
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1" class="title">Password</label>
+              <input type="password" class="form-control" id="password" >
+            </div>
+            <button type="button" class="btn btn-primary" onclick="login()">Log-in</button>
+            <div id="messageBoxId"></div>
+            <div id="paragrafo">
+                <p> Non hai un account? <a href="../Registrazione/registrazione.html">Registrati </a></p>
+            </div>
+          </form>
+    </div>
+    
+</body>
+</html>
