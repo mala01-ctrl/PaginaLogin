@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $email;
     $password;
     if (isset($_POST['email']))
@@ -18,10 +19,17 @@
             $presentUser = json_decode($myarray[$i]);
             if (strcmp($presentUser->email, $email) == 0 && password_verify($password, $presentUser->password))
             {
-                setcookie("user", $presentUser->email, time() + 72000, '/');  //72000 equivale a 2 giorni
+                $_SESSION['user_mail'] = $presentUser->email;
+                setcookie("user", encryptCookie($presentUser), time() + 72000, '/');  //72000 equivale a 2 giorni
                 return true;
             }
         }
         return false;
+    }
+
+    function encryptCookie($presentUser){
+        //$salt = substr (md5($presentUser->email), 0, 2);
+        $cookie = base64_encode ($presentUser->email);
+        return $cookie;
     }
 ?>

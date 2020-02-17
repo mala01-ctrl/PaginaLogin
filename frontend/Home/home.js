@@ -9,6 +9,7 @@ function getData(){
           }
           else
           {
+            c = this.responseText;
             data = this.responseText;
             createTable(data);
           }
