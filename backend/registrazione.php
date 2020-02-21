@@ -1,24 +1,27 @@
 <?php
+    include_once 'db.php';
+
     $requestPayload = file_get_contents("php://input");
     $user = json_decode($requestPayload);
     if (!checkValue($user)){
         echo 0;
         return;
     }
-    $myfile = "users.txt";
-    if (filesize($myfile) > 0)
+    try
     {
-        if (UserExist($user, $myfile)){
-            echo 0;
-            return;
-        }
+        $database = new Connection();
+        $db = $database->openConnection();
+        insertUser($db, $user);
+        $id = selectUser($db, $user);
+        insertLogin($db, $user, $id);
+        echo 1;
+        return;
+        
+    }catch(PDOException $e)
+    {
+        //echo $e->getMessage();
+        echo 0;
     }
-    $MyFileHandler = fopen($myfile, 'a+');
-    $row = createRow($user);
-    fwrite($MyFileHandler, $row);
-    fwrite($MyFileHandler, "\n");
-    fclose($MyFileHandler);
-    echo 1;
 
     function checkValue($user){
         if (strcmp($user->nome, "") == 0)
@@ -38,21 +41,22 @@
         return true;
     }
 
-    function UserExist($user, $filename){
-        $myarray=file($filename);
-        for ($i = 0; $i < count($myarray); $i++)
-        {
-            $presentUser = json_decode($myarray[$i]);
-            if (strcmp($presentUser->email, $user->email) == 0)
-                return true;
-        }
-        return false;
+    function insertUser($db, $user){
+        $stm = $db->prepare("INSERT INTO anagrafici_utente (nome, cognome ,sesso, patente, nazionalita, email) 
+        VALUES (:nome, :cognome, :sesso, :patente, :nazionalita, :email)");
+        $stm->execute(array(':nome' => $user->nome, ':cognome' => $user->cognome, 
+        ':sesso' => $user->sesso, ':patente' => $user->patente, 
+        ':nazionalita' => $user->nazionalita, ':email' => $user->email));
     }
 
-    function createRow($user){
-        $user->password = password_hash($user->password, PASSWORD_DEFAULT);
-        $row = json_encode($user);
-        return $row; 
+    function selectUser($db, $user){
+        $stm = $db->prepare("SELECT id FROM anagrafici_utente WHERE email = :email");
+        return $stm->execute(array(':email' => $user->email));
     }
 
+    function insertLogin($db, $user, $id){
+        $stm = $db->prepare("INSERT INTO login_utente (password_user, utente) 
+        VALUES (:password_user, :utente)");
+        $stm->execute(array(':password_user' => password_hash($user->password, PASSWORD_DEFAULT), ':utente' => $id));
+    }
 ?>
