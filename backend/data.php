@@ -36,8 +36,5 @@
         }
         return false;
     }
-
-    //Vulnerabilità nella funzione di oscurazione dei cookie Da rivedere
-    //Da rivedere il foreach
         
 ?>
