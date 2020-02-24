@@ -1,6 +1,5 @@
 <?php
     include_once 'db.php';
-
     $requestPayload = file_get_contents("php://input");
     $user = json_decode($requestPayload);
     if (!checkValue($user)){
