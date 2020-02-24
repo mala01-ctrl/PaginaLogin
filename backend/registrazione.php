@@ -14,12 +14,12 @@
         insertUser($db, $user);
         $id = selectUser($db, $user);
         insertLogin($db, $user, $id);
+        $database->closeConnection();
         echo 1;
         return;
         
     }catch(PDOException $e)
     {
-        //echo $e->getMessage();
         echo 0;
     }
 
@@ -49,9 +49,8 @@
         ':nazionalita' => $user->nazionalita, ':email' => $user->email));
     }
 
-    function selectUser($db, $user){
-        $stm = $db->prepare("SELECT id FROM anagrafici_utente WHERE email = :email");
-        return $stm->execute(array(':email' => $user->email));
+    function selectUser($db){
+        return $db->lastInsertId();
     }
 
     function insertLogin($db, $user, $id){

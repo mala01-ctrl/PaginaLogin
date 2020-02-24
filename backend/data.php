@@ -1,35 +1,24 @@
 <?php
+    include_once 'db.php';
     session_start();
-    if (isset($_SESSION['user_mail'])){
-        $users = getData("users.txt");
+    if (isset($_SESSION['id'])){
+        $database = new Connection();
+        $db = $database->openConnection();
+        $users = getData($db);
         echo json_encode($users);
-        return;
-    }
-    if (!isset($_COOKIE["user"]))
-    {
-        echo 0;
+        $database->closeConnection();
         return;
     }
     else
-    {
-        $content = base64_decode ($_COOKIE["user"]);
-        if (checkCookie($content, "users.txt"))
-        {
-            $users = getData("users.txt");
-            echo json_encode($users);
-            return;
-        }
         echo 0;
-        return;
-    }
 
-    function getData($filename){
-        $myarray=file($filename);
+    function getData($db){
+        $sql = "SELECT * FROM anagrafici_utente";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
         $users = array();
-        for ($i = 0; $i < count($myarray); $i++)
-        {
-            $presentUser = json_decode($myarray[$i]);
-            $users[$i] = $presentUser;
+        while ($row = $stmt->fetchObject()) {
+            array_push($users, $row);
         }
         return $users;
     }
@@ -49,5 +38,6 @@
     }
 
     //Vulnerabilità nella funzione di oscurazione dei cookie Da rivedere
+    //Da rivedere il foreach
         
 ?>

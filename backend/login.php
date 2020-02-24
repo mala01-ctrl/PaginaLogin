@@ -1,4 +1,5 @@
 <?php
+    include_once 'db.php';
     session_start();
     $email;
     $password;
@@ -6,30 +7,37 @@
         $email = $_POST['email'];
     if (isset($_POST['password']))
         $password = $_POST['password'];
-    $myfile = "users.txt";
-    if (login($email, $password, $myfile))
-        echo 1;
-    else
-        echo 0;
-
-    function login($email, $password, $filename){
-        $myarray=file($filename);
-        for ($i = 0; $i < count($myarray); $i++)
+    try
+    {
+        $database = new Connection();
+        $db = $database->openConnection();
+        if (login($email, $password, $db))
         {
-            $presentUser = json_decode($myarray[$i]);
-            if (strcmp($presentUser->email, $email) == 0 && password_verify($password, $presentUser->password))
-            {
-                $_SESSION['user_mail'] = $presentUser->email;
-                setcookie("user", encryptCookie($presentUser), time() + 72000, '/');  //72000 equivale a 2 giorni
-                return true;
-            }
+            $database->closeConnection();
+            echo 1;
         }
-        return false;
+        
+    }catch(PDOException $e)
+    {
+        echo 0;
     }
 
-    function encryptCookie($presentUser){
-        //$salt = substr (md5($presentUser->email), 0, 2);
-        $cookie = base64_encode ($presentUser->email);
-        return $cookie;
+
+    function login($email, $password, $db){
+        $stm = $db->prepare("SELECT u.email, l.password_user 
+        FROM anagrafici_utente u
+        INNER JOIN login_utente l on l.utente = u.id
+        WHERE u.email = :email");
+        $stm->execute(['email' => $email]);
+        $user = $stm->fetch(); 
+        if (!Empty($user))
+        {
+            if (password_verify($password, $user['password_user']))
+            {
+                $_SESSION['id'] = session_id();
+                return true;
+            }  
+        }
+        return false;
     }
 ?>
