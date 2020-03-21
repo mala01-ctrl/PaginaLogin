@@ -35,6 +35,7 @@
             if (password_verify($password, $user['password_user']))
             {
                 $_SESSION['id'] = session_id();
+                $_SESSION['name'] = "lori";
                 return true;
             }  
         }

@@ -1,2 +1,0 @@
-{"nome":"Lorenzo","cognome":"Malavolti","sesso":"M","patente":"B","nazionalita":"Italiano","email":"malavoltilorenzo0@gmail.com","password":"$2y$10$VThll3QQC1eNZqygOHtU4e59az.BrARezSyuF1FH3LlAVbTP.aPKW"}
-{"nome":"Mario","cognome":"Rossi","sesso":"M","patente":"A","nazionalita":"Italiano","email":"a@k","password":"$2y$10$4E\/jovqorHhIEz3PRbn7pOZbYl1n\/rbRvXsVPTAfDrTN8pu3jtycW"}
