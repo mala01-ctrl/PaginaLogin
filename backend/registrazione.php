@@ -37,15 +37,18 @@
             return false;
         if (strcmp($user->password, "") == 0)
             return false;
+        if (strcmp($user->ruolo, "") == 0)
+            return false;
         return true;
     }
 
     function insertUser($db, $user){
-        $stm = $db->prepare("INSERT INTO anagrafici_utente (nome, cognome ,sesso, patente, nazionalita, email) 
-        VALUES (:nome, :cognome, :sesso, :patente, :nazionalita, :email)");
+        $stm = $db->prepare("INSERT INTO anagrafici_utente (nome, cognome ,sesso, patente, nazionalita, email, ruolo) 
+        VALUES (:nome, :cognome, :sesso, :patente, :nazionalita, :email, :ruolo)");
         $stm->execute(array(':nome' => $user->nome, ':cognome' => $user->cognome, 
         ':sesso' => $user->sesso, ':patente' => $user->patente, 
-        ':nazionalita' => $user->nazionalita, ':email' => $user->email));
+        ':nazionalita' => $user->nazionalita, ':email' => $user->email, 
+        ':ruolo' => $user->ruolo));
     }
 
     function selectUser($db){

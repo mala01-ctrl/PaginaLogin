@@ -42,6 +42,15 @@ function populateSelect() {
                 break;
             }
         }
+        select = document.getElementById("ruolo");
+        for (i = 0; i < select.length; i++)
+        {
+            if (data.ruolo === select.options[i].text)
+            {
+                document.getElementById("ruolo").selectedIndex = i;
+                break;
+            }
+        }
     }
 }
 
@@ -75,7 +84,7 @@ function controllaPatente() {
  * Funzione che restituisce l'indice della nazionalità
  * inserita dall'utente.
  */
-function getSelectedIndex() {
+function getSelectedIndexNazionalita() {
     nazionalita = document.getElementById("nazionalita");
     return nazionalita.options[nazionalita.selectedIndex].text;
 }
@@ -129,13 +138,16 @@ function conferma(){
     patente = controllaPatente();
 
     //nazionalita inserita dall'utente
-    nazionalita = getSelectedIndex();
+    nazionalita = getSelectedIndexNazionalita();
 
     //email inserita dall'utente
     email = document.getElementById("email").value;
 
     //password inserita dall'utente
     password = document.getElementById("password").value;
+
+    ruolo = getSelectedIndexRuolo();
+
     if (!ControlloCampiForm(nome, cognome, sesso, patente, nazionalita, email, password)){
         document.getElementById("errore").innerHTML = "Inserire credenziali";
         return;
@@ -148,7 +160,8 @@ function conferma(){
         'patente' : patente,
         'nazionalita' : nazionalita,
         'email' : email,
-        'password' : password
+        'password' : password,
+        'ruolo' : ruolo
     };
     //Salvataggio dei dati nel localStorage del browser convertiti in una stringa JSON
     localStorage.setItem('objectToPass', JSON.stringify(data));
@@ -164,4 +177,9 @@ function conferma(){
  */
 function annulla(){
     window.location.href = "../Login/login.html";
+}
+
+function getSelectedIndexRuolo(){
+    ruolo = document.getElementById("ruolo");
+    return ruolo.options[ruolo.selectedIndex].text;
 }

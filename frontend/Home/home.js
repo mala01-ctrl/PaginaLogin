@@ -1,4 +1,7 @@
 var users = null;
+IdloggedUser = localStorage.getItem("user");
+console.log(IdloggedUser);
+localStorage.clear();
 function getData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -14,7 +17,7 @@ function getData(){
           }
       }
     };
-    xhttp.open("GET", "../../backend/data.php", true);
+    xhttp.open("GET", "../../backend/data.php/users", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
@@ -28,7 +31,8 @@ function loadTableData(data){
         dataHTML += "<tr><td>" + data[i].nome + "</td><td>" + data[i].cognome + 
         "</td><td>" + data[i].sesso +"</td><td>" + data[i].nazionalita + 
         "</td><td>" + data[i].patente + "</td><td>" + data[i].email + 
-        "</td> <td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Modifica</button> </td></tr>";
+        "</td> <td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Modifica</button> </td>" +
+        "<td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Elimina</button> </td></tr>";
     }
     tableBody.innerHTML = dataHTML;
 }

@@ -7,6 +7,7 @@ function getData(){
     data = JSON.parse(localStorage.getItem('objectToPass'));
     document.getElementById('nome').innerHTML = data.nome;
     document.getElementById('cognome').innerHTML = data.cognome;
+    document.getElementById('ruolo').innerHTML = data.ruolo;
     if (data.sesso === 'M')
         document.getElementById('sesso').innerHTML = "Maschile";
     else
