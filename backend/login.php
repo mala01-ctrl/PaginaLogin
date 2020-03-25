@@ -1,6 +1,11 @@
 <?php
     include_once 'db.php';
     session_start();
+    if (isset($_SESSION['id']))
+    {
+        echo $_SESSION['ruolo'];
+        return;
+    }
     $email;
     $password;
     if (isset($_POST['email']))
@@ -13,7 +18,7 @@
         $db = $database->openConnection();
         $user = login($email, $password, $db);
         if ($user != null)
-            echo json_encode($user);
+            echo ($user);
         else
             echo 0;
         
@@ -34,11 +39,9 @@
         {
             if (password_verify($password, $user['password_user']))
             {
-                $_SESSION['user']['id'] = $user['id'];
-                $_SESSION['user']['ruolo'] = $user['ruolo'];
-                $object['ruolo'] = $user['ruolo'];
-                $object['id'] = $user['id'];
-                return $object;
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['ruolo'] = $user['ruolo'];
+                return $user['ruolo'];
             }  
         }
         return null;

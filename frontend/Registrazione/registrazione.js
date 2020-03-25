@@ -29,9 +29,9 @@ function populateSelect() {
             document.getElementById("Maschile").checked = true;
         else
             document.getElementById("Femminile").checked = true;
-        if (data.patente === 'A')
+        if (data.patente_A)
             document.getElementById("A").checked = true;
-        else
+        if (data.patente_B)
             document.getElementById("B").checked = true;
         document.getElementById("email").value = data.email;
         for (i = 0; i < options.length; i++)
@@ -68,19 +68,6 @@ function controllaSesso() {
 }
 
 /**
- * Funzione che restituisce la patente inserita
- * dall'utente.
- */
-function controllaPatente() {
-    if (document.getElementById("A").checked) {
-        return "A";
-    }
-    if (document.getElementById("B").checked) {
-        return "B";
-    }
-}
-
-/**
  * Funzione che restituisce l'indice della nazionalità
  * inserita dall'utente.
  */
@@ -96,19 +83,16 @@ function getSelectedIndexNazionalita() {
  * @param {*} nome nome inserito dall'utente 
  * @param {*} cognome cognome inserito dall'utente 
  * @param {*} sesso genere inserito dall'utente 
- * @param {*} patente patenete inserita dall'utente 
  * @param {*} nazionalita nazionalità inserita dall'utente
  * @param {*} email email inserita dall'utente
  * @param {*} password password inserita dall'utente 
  */
-function ControlloCampiForm(nome, cognome, sesso, patente, nazionalita, email, password) {
+function ControlloCampiForm(nome, cognome, sesso, nazionalita, email, password) {
     if (nome  === '')
         return false;
     if (cognome === '')
         return false;
     if (sesso === '')
-        return false;
-    if (patente === '')
         return false;
     if (nazionalita === '')
         return false;
@@ -134,8 +118,15 @@ function conferma(){
     //sesso inserito dall'utente
     sesso = controllaSesso();
 
+    patente_A = false;
+    patente_B = false;
+
     //patente inserita dall'utente
-    patente = controllaPatente();
+    if (document.getElementById("A").checked == true)
+        patente_A = true;
+
+    if (document.getElementById("B").checked == true)
+        patente_B = true;
 
     //nazionalita inserita dall'utente
     nazionalita = getSelectedIndexNazionalita();
@@ -148,7 +139,7 @@ function conferma(){
 
     ruolo = getSelectedIndexRuolo();
 
-    if (!ControlloCampiForm(nome, cognome, sesso, patente, nazionalita, email, password)){
+    if (!ControlloCampiForm(nome, cognome, sesso, nazionalita, email, password)){
         document.getElementById("errore").innerHTML = "Inserire credenziali";
         return;
     }
@@ -157,7 +148,8 @@ function conferma(){
         'nome' : nome,
         'cognome' : cognome,
         'sesso' : sesso,
-        'patente' : patente,
+        'patente_A' : patente_A,
+        'patente_B' : patente_B,
         'nazionalita' : nazionalita,
         'email' : email,
         'password' : password,
@@ -176,6 +168,7 @@ function conferma(){
  * alla pagina di login.
  */
 function annulla(){
+    localStorage.clear();
     window.location.href = "../Login/login.html";
 }
 

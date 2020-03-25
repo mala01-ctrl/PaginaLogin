@@ -1,7 +1,4 @@
 var users = null;
-IdloggedUser = localStorage.getItem("user");
-console.log(IdloggedUser);
-localStorage.clear();
 function getData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -30,11 +27,20 @@ function loadTableData(data){
     {
         dataHTML += "<tr><td>" + data[i].nome + "</td><td>" + data[i].cognome + 
         "</td><td>" + data[i].sesso +"</td><td>" + data[i].nazionalita + 
-        "</td><td>" + data[i].patente + "</td><td>" + data[i].email + 
+        "</td><td>" + patenti(data[i]) + "</td><td>" + data[i].email + 
         "</td> <td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Modifica</button> </td>" +
         "<td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Elimina</button> </td></tr>";
     }
     tableBody.innerHTML = dataHTML;
+}
+
+function patenti(data){
+    patente = "";
+    if (data.patente_A == true)
+        patente += "A ";
+    if (data.patente_B == true)
+        patente += "B";
+    return patente;
 }
 
 function updateRow(idUser){
@@ -44,7 +50,17 @@ function updateRow(idUser){
 }
 
 function logout(){
-    window.location.href = "../Login/login.html";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          if (this.responseText === '1')
+          {
+              window.location.href = "../Login/login.html";
+          }
+      }
+    };
+    xhttp.open("GET", "../../backend/logout.php", true);
+    xhttp.send();
 }
 
 

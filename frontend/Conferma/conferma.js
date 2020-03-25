@@ -13,10 +13,12 @@ function getData(){
     else
     document.getElementById('sesso').innerHTML = "Femminile";
     document.getElementById('nazionalita').innerHTML = data.nazionalita;
-    if (data.patente === 'A')
-        document.getElementById('patente').innerHTML = "Categ.A";
-    else
-        document.getElementById('patente').innerHTML = "Categ.B";
+    patenti = "";
+    if (data.patente_A)
+        patenti += "Categ.A ";
+    if (data.patente_B)
+        patenti += "Categ.B";
+    document.getElementById("patente").innerText = patenti;
     document.getElementById('email').innerHTML = data.email;
 }
 

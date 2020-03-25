@@ -8,13 +8,9 @@
         public $email;
         public $password;
 
-        public function __construct($nome, $cognome, $sesso, $nazionalita, $email)
+        public function __construct()
         {
-            $this->nome = $nome;
-            $this->cognome = $cognome;
-            $this->sesso = $sesso;
-            $this->nazionalita = $nazionalita;
-            $this->email = $email;            
+
         }
     }
 ?>

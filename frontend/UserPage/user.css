@@ -4,6 +4,15 @@
 
 #box{
     margin: auto;
+    margin-top: 50px;
     width: 500px;
     height: 500px;
+}
+
+#dati{
+    margin-left: 20px;
+}
+
+#nazionalita{
+    margin-left: 20px;
 }

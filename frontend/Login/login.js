@@ -19,15 +19,11 @@ function login() {
     //Risposta da parte del server
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-            data = JSON.parse(this.responseText);
-            if (data.ruolo === "Admin"){
-                //Indirizzamento alla pagina dei dati
-                localStorage.setItem("user", data.id);
+            data = this.responseText;
+            if (data === "Admin"){
                 window.location.href="../Home/home.html";
             }
-            if (data.ruolo === "User"){
-                //Indirizzamento alla pagina dei dati
-                localStorage.setItem("user", data.id);
+            if (data === "User"){
                 window.location.href="../UserPage/user.html";
             }
             if (this.responseText == 0)
