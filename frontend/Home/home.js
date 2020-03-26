@@ -29,7 +29,7 @@ function loadTableData(data){
         "</td><td>" + data[i].sesso +"</td><td>" + data[i].nazionalita + 
         "</td><td>" + patenti(data[i]) + "</td><td>" + data[i].email + 
         "</td> <td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Modifica</button> </td>" +
-        "<td><button class='btn btn-primary' id=" + i + " onclick='updateRow(this.id)'>Elimina</button> </td></tr>";
+        "<td><button class='btn btn-primary' id=" + data[i].id + " onclick='deleteRow(this.id)'>Elimina</button> </td></tr>";
     }
     tableBody.innerHTML = dataHTML;
 }
@@ -43,10 +43,18 @@ function patenti(data){
     return patente;
 }
 
-function updateRow(idUser){
-    user = users[idUser];
-    localStorage.setItem('objectToPass', JSON.stringify(user));
-    window.location.href="../Registrazione/registrazione.html";
+function deleteRow(id){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          data = JSON.parse(this.responseText);
+          if (data.message === "Utente cancellato correttamente.")
+            getData();
+      }
+    };
+    xhttp.open("DELETE", "../../RestService/Utente-Anagrafica/delete.php", true);
+    prova = JSON.stringify({"id" : id});
+    xhttp.send(prova);
 }
 
 function logout(){
