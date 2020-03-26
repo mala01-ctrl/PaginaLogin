@@ -49,7 +49,8 @@ function registra(){
     //Risposta del server 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == 0)
+            data = JSON.parse(this.responseText);
+            if (data.message === "Impossibile inserire l'utente")
                 localStorage.setItem('esito', 0);
             else
                 localStorage.setItem('esito', 1);
@@ -58,8 +59,7 @@ function registra(){
     };
 
     //Richiesta al server
-    xhttp.open("POST", "../../backend/registrazione.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.open("POST", "../../RestService/Utente-Anagrafica/create.php", true);
     xhttp.send(data);
-    localStorage.clear();
+    //localStorage.clear();
 }

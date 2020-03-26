@@ -14,7 +14,7 @@ function getData(){
           }
       }
     };
-    xhttp.open("GET", "../../backend/data.php/users", true);
+    xhttp.open("GET", "../../RestService/Utente-Anagrafica/read.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 }
@@ -59,7 +59,7 @@ function logout(){
           }
       }
     };
-    xhttp.open("GET", "../../backend/logout.php", true);
+    xhttp.open("GET", "../../RestService/logout.php", true);
     xhttp.send();
 }
 

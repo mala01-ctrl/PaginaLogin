@@ -1,11 +1,6 @@
 <?php
-    include_once 'db.php';
+    include_once 'config/Database.php';
     session_start();
-    if (isset($_SESSION['id']))
-    {
-        echo $_SESSION['ruolo'];
-        return;
-    }
     $email;
     $password;
     if (isset($_POST['email']))
@@ -14,7 +9,7 @@
         $password = $_POST['password'];
     try
     {
-        $database = new Connection();
+        $database = new Database();
         $db = $database->openConnection();
         $user = login($email, $password, $db);
         if ($user != null)

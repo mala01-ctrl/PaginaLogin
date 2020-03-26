@@ -16,7 +16,7 @@ function getData(){
             }
         }
     };
-    xhttp.open("GET", "../../backend/data.php/user", true);
+    xhttp.open("GET", "../../RestService/Utente-Anagrafica/read.php/user", true);
     xhttp.send();
 }
 
@@ -66,6 +66,45 @@ function logout(){
           }
       }
     };
-    xhttp.open("GET", "../../backend/logout.php", true);
+    xhttp.open("GET", "../../RestService/logout.php", true);
     xhttp.send();
+}
+
+function modify(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange=function() {
+        if (this.readyState == 4 && this.status == 200) {
+            data = JSON.parse(this.responseText);
+            if (data.risposta === "Utente aggiornato")
+                getData();
+        }
+    };
+    xhttp.open("POST", "../../RestService/Utente-Anagrafica/update.php", true);
+    xhttp.send(getValue());
+}
+
+function getValue(){
+    data.nome = document.getElementById("nome").value;
+    data.cognome = document.getElementById("cognome").value;
+    if (document.getElementById("Maschile").checked)
+        data.sesso = "M";
+    else
+        data.sesso = "F";
+    //patente inserita dall'utente
+    if (document.getElementById("A").checked == true)
+        patente_A = true;
+
+    if (document.getElementById("B").checked == true)
+        patente_B = true;
+    data.nazionalita = getSelectedIndexNazionalita();
+    return JSON.stringify(data);
+}
+
+/**
+ * Funzione che restituisce l'indice della nazionalità
+ * inserita dall'utente.
+ */
+function getSelectedIndexNazionalita() {
+    nazionalita = document.getElementById("nazionalita");
+    return nazionalita.options[nazionalita.selectedIndex].text;
 }

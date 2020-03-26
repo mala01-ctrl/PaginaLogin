@@ -1,10 +1,9 @@
 <?php
-    class Connection
-    {
+    class Database{
         private $server = "mysql:host=localhost;dbname=quintaa_anagrafe";
         private $user = "root";
         private $password = "Lorimala01";
-        protected $con;
+        public $conn;
 
         public function openConnection(){
             try
@@ -15,10 +14,6 @@
             {
                 echo $e->getMessage();
             }
-        }
-
-        public function closeConnection(){
-            $this->con = null;
         }
     }
 ?>

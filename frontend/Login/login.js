@@ -36,7 +36,7 @@ function login() {
     };
 
     //Invio della richiesta al server 
-    xhttp.open("POST", "../../backend/login.php", true);
+    xhttp.open("POST", "../../RestService/login.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("email=" + email + "&password=" + password);
   }
