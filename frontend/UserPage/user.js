@@ -23,11 +23,12 @@ function getData(){
 function populateSelect(){
     //Oggetto della select 
     var select = document.getElementById("nazionalita");
-        
-    for (i = 0; i < options.length; i++) {
-        option = document.createElement("option");
-        option.text = options[i];
-        select.add(option);
+    if (select.length == 0){
+        for (i = 0; i < options.length; i++) {
+            option = document.createElement("option");
+            option.text = options[i];
+            select.add(option);
+        }
     }
 }
 
@@ -92,10 +93,10 @@ function getValue(){
         data.sesso = "F";
     //patente inserita dall'utente
     if (document.getElementById("A").checked == true)
-        patente_A = true;
+        data.patente_A = true;
 
     if (document.getElementById("B").checked == true)
-        patente_B = true;
+        data.patente_B = true;
     data.nazionalita = getSelectedIndexNazionalita();
     return JSON.stringify(data);
 }
