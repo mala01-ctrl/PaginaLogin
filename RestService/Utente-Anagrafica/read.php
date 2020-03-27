@@ -18,11 +18,15 @@
         echo json_encode($user);
         return;
     }
-    $users = array();
-    $users = $user->read();
-    if (count($users) > 0)
-    {
-        echo json_encode($users);
-        $db = null;
+    if (strcmp($_SESSION['ruolo'], "Admin") == 0){
+        $users = array();
+        $users = $user->read();
+        if (count($users) > 0)
+        {
+            echo json_encode($users);
+        }
     }
+    else
+        echo 0;
+    $db = null;
 ?>
